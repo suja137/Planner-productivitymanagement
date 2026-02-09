@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Planner</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0b132b;
+    color: #eaeaea;
+}
+header {
+    padding: 24px;
+    text-align: center;
+    background: linear-gradient(90deg, #0b132b, #132c77);
+    border-bottom: 1px solid #2e3b5e;
+}
+main {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    min-height: calc(100vh - 120px);
+}
+
+aside {
+    background: #102255;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #2e3b5e;
+}
+
+blockquote {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    font-style: italic;
+    max-width: 400px;
+    position: relative;
+}
+
+blockquote::before {
+    content: "“";
+    font-size: 4rem;
+    color: #3a86ff;
+    position: absolute;
+    left: -30px;
+    top: -20px;
+}
+
+blockquote footer {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    font-style: normal;
+    color: #b5c7ff;
+}
+
+section {
+    padding: 40px;
+}
+
+h2 {
+    margin-top: 0;
+    border-left: 5px solid #3a86ff;
+    padding-left: 10px;
+}
+
+form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+fieldset {
+    border: 1px solid #2e3b5e;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 18px;
+}
+
+legend {
+    color: #3a86ff;
+    font-weight: bold;
+    padding: 0 8px;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #080e22;
+}
+
+input, select {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #2e3b5e;
+    background: #ffffff;
+    color: #0055ff;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #3a86ff;
+}
+
+button {
+    margin-top: 18px;
+    padding: 12px 18px;
+    background: #3a86ff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5fa0ff;
+}
+
+.error {
+    color: #ff0303;
+    margin-top: 10px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    color: #0055ff;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #2c385c;
+    text-align: center;
+}
+
+th {
+    background: #002593;
+    color: #3a86ff;
+}
+
+tr:hover {
+    background: rgba(53, 130, 255, 0.953);
+}
+
+footer {
+    text-align: center;
+    padding: 14px;
+    background: #1c2851;
+    border-top: 1px solid #2e3b5e;
+    font-size: 0.85rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Event Planner Dashboard</h1>
+   
+</header>
+
+<main>
+
+    <aside>
+        <blockquote>
+            Managing events is not about handling chaos —
+            it is about designing calm before the crowd arrives.
+            <footer>— Event Planning Principle</footer>
+        </blockquote>
+    </aside>
+
+    <!-- RIGHT FORM -->
+    <section>
+        <h2>Create New Event</h2>
+
+        <form id="eventForm">
+
+            <fieldset>
+                <legend>Client Information</legend>
+                <label>Client Name</label>
+                <input type="text" id="clientName" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Event Details</legend>
+                <label>Event Name</label>
+                <input type="text" id="eventName" required>
+
+                <label>Priority</label>
+                <select id="priority" required>
+                    <option value="">Select</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Schedule & Cost</legend>
+                <label>Start Date</label>
+                <input type="date" id="startDate" required>
+
+                <label>End Date</label>
+                <input type="date" id="endDate" required>
+
+                <label>Budget (₹)</label>
+                <input type="number" id="budget">
+
+                <label>Estimated Effort (hours)</label>
+                <input type="number" id="effort">
+            </fieldset>
+
+            <button type="submit">Create Event</button>
+            <p class="error" id="errorMsg"></p>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Event</th>
+                    <th>Priority</th>
+                    <th>Duration</th>
+                    <th>Budget</th>
+                    <th>Effort</th>
+                </tr>
+            </thead>
+            <tbody id="eventTableBody"></tbody>
+        </table>
+
+    </section>
+
+</main>
+
+<footer>
+    Event Planner System © 2026
+</footer>
+
+<script>
+const form = document.getElementById("eventForm");
+const tableBody = document.getElementById("eventTableBody");
+const errorMsg = document.getElementById("errorMsg");
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    errorMsg.textContent = "";
+
+    const client = clientName.value.trim();
+    const eventName = document.getElementById("eventName").value.trim();
+    const priority = document.getElementById("priority").value;
+    const start = startDate.value;
+    const end = endDate.value;
+    const budget = document.getElementById("budget").value;
+    const effort = document.getElementById("effort").value;
+
+    if (!client || !eventName || !priority || !start || !end) {
+        errorMsg.textContent = "All required fields must be filled.";
+        return;
+    }
+
+    const s = new Date(start);
+    const eDate = new Date(end);
+
+    if (eDate < s) {
+        errorMsg.textContent = "End date cannot be before start date.";
+        return;
+    }
+
+    const duration = Math.ceil((eDate - s) / (1000 * 60 * 60 * 24)) + 1;
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${client}</td>
+        <td>${eventName}</td>
+        <td>${priority}</td>
+        <td>${duration} days</td>
+        <td>${budget || "—"}</td>
+        <td>${effort || "—"}</td>
+    `;
+
+    tableBody.appendChild(row);
+    form.reset();
+});
+</script>
+
+</body>
+</html>

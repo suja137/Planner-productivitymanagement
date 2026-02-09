@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Creation Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #051a92;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #391df2;
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        legend {
+            font-weight: bolder;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: #0b19b5;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            
+        }
+
+        button:hover {
+            background: #0099ff;
+        }
+
+        aside {
+            background: #ecf0f1;
+            padding: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #3498db;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #2c3e50;
+            color: white;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Event Planner Dashboard</h1>
+    <p>Create and manage client events</p>
+</header>
+
+<main>
+
+    <section>
+        <article>
+            <h2>Event Creation Form</h2>
+
+            <form id="eventForm">
+
+                <fieldset>
+                    <legend>Client Information</legend>
+
+                    <label for="clientName">Client Name</label>
+                    <input type="text" id="clientName" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Event Details</legend>
+
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" required>
+
+                    <label for="priority">Priority</label>
+                    <select id="priority">
+                        <option value="">Select</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Schedule & Cost</legend>
+
+                    <label for="startDate">Start Date</label>
+                    <input type="date" id="startDate">
+
+                    <label for="endDate">End Date</label>
+                    <input type="date" id="endDate">
+
+                    <label for="budget">Budget (₹)</label>
+                    <input type="number" id="budget">
+
+                    <label for="effort">Estimated Effort (hours)</label>
+                    <input type="number" id="effort">
+                </fieldset>
+
+                <button type="submit">Create Event</button>
+                <p class="error" id="errorMsg"></p>
+
+            </form>
+
+            <aside>
+                <strong>Note:</strong>
+                <p>Total events are displayed below.</p>
+            </aside>
+
+        </article>
+    </section>
+
+    <section>
+        <h2>Created Events</h2>
+
+        <output>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Event</th>
+                        <th>Priority</th>
+                        <th>Duration (days)</th>
+                        <th>Budget (₹)</th>
+                        <th>Effort (hrs)</th>
+                    </tr>
+                </thead>
+                <tbody id="eventTableBody">
+                </tbody>
+            </table>
+        </output>
+    </section>
+
+</main>
+
+<footer>
+    <p>Event Planner System © 2026</p>
+</footer>
+
+<script>
+    const form = document.getElementById("eventForm");
+    const tableBody = document.getElementById("eventTableBody");
+    const errorMsg = document.getElementById("errorMsg");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        errorMsg.textContent = "";
+
+        const client = document.getElementById("clientName").value.trim();
+        const eventName = document.getElementById("eventName").value.trim();
+        const priority = document.getElementById("priority").value;
+        const start = document.getElementById("startDate").value;
+        const end = document.getElementById("endDate").value;
+        const budget = document.getElementById("budget").value;
+        const effort = document.getElementById("effort").value;
+
+        if (!client || !eventName || !priority || !start || !end) {
+            errorMsg.textContent = "All required fields must be filled.";
+            return;
+        }
+
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+
+        if (endDate < startDate) {
+            errorMsg.textContent = "End date cannot be before start date.";
+            return;
+        }
+
+        const duration =
+            Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${client}</td>
+            <td>${eventName}</td>
+            <td>${priority}</td>
+            <td>${duration}</td>
+            <td>${budget || "—"}</td>
+            <td>${effort || "—"}</td>
+        `;
+        alert("Event created!!");
+        tableBody.appendChild(row);
+        form.reset();
+    });
+</script>
+
+</body>
+</html>
