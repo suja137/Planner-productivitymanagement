@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="container">
+  <div class="left-panel">
+    <img src="logo.png" class="logo">
+    <h1>Hello, Welcome!</h1>
+    <p>Plan. Organize. Achieve.</p>
+  </div>
+
+  <div class="right-panel">
+    <header>
+      <h2>Log In</h2>
+    </header>
+
+    <form id="loginform">
+      <label>Email</label>
+      <input type="email" placeholder="Enter your email" required>
+
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Enter password" required>
+
+      <div class="row">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <p class="switch">Not a member yet? <a href="register.html">Sign up</a></p>
+    </form>
+  </div>
+</section>
+<script>
+  document.getElementById("loginform").addEventListener("submit", (e) => {
+  e.preventDefault(); 
+  console.log("Form submitted");
+});
+input.addEventListener("focus", () => {
+  input.style.background = "lightyellow";
+});
+input.addEventListener("input", () => {
+  console.log(input.value);
+});
+input.addEventListener("invalid", () => {
+  alert("Invalid input!");
+});
+  const passwordInput = document.getElementById("password");
+  passwordInput.addEventListener("paste", (e) => {
+  e.preventDefault();
+  alert("Pasting is disabled in the password field for security reasons.");
+});
+</script>
+</body>
+</html>

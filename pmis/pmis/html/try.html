@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Planner Project Management</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  background:#ffffff;
+  color:#000000;
+  line-height:1.6;
+}
+nav{
+  background:linear-gradient(to right,rgba(52, 52, 129,0.9),rgba(22, 22, 68,0.9));
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.logo{
+  color:#FF7A00;
+  font-size:22px;
+  font-weight:bold;
+}
+.nav-links a{
+  color:#F5F7FA;
+  margin:0 10px;
+  text-decoration:none;
+  transition:0.3s;
+}
+.nav-links a:hover{
+  color:#FFA94D;
+}
+.nav-right button{
+  background:#FF7A00;
+  border:none;
+  color:white;
+  padding:8px 14px;
+  margin-left:8px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.nav-right button:hover{
+  background:#FFA94D;
+}
+.hero{
+  background:linear-gradient(to right,rgb(22, 22, 68),rgb(52, 52, 129));
+    background-size:cover;
+    background-position:center;
+  text-align:center;
+  padding:90px 20px;
+  min-height: 70vh;
+}
+
+.hero h1{
+  font-size:48px;
+  margin-bottom:15px;
+  color: white;
+}
+
+.hero p{
+  color:#AAB4C3;
+}
+#getStartedBtn{
+  background:#FF7A00;
+  border:none;
+  color:white;
+  padding:12px 24px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:18px;
+  font-weight:bold;
+  transition:0.3s;
+}
+section {
+  padding: 70px 30px;
+  text-align: center;
+}
+
+h2{
+  margin-bottom:20px;
+}
+.about p{
+  max-width:800px;
+  margin:auto;
+  color:#31353a;
+}
+.features{
+    color: white;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+.feature-card{
+  width:250px;
+  background:linear-gradient(to right,rgb(22, 22, 68),rgb(52, 52, 129));
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.5);
+  transition:0.3s;
+}
+.feature-card p{
+  color:#ffffff;
+  margin-top:10px;
+}
+.steps{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  color: white;
+}
+.step{
+  width:220px;
+ background:linear-gradient(to right,rgb(22, 22, 68),rgb(52, 52, 129));
+  padding:18px;
+  border-left:10px solid #FF7A00;
+  text-align:left;
+}
+.faq-item{
+  background:linear-gradient(to right,rgb(22, 22, 68),rgb(52, 52, 129));
+  max-width:700px;
+  color: white;
+  margin:10px auto;
+  padding:15px;
+  border-radius:8px;
+  box-shadow: rgba(0,0,0,0.5);
+  cursor:pointer;
+  text-align:left;
+}
+.answer{
+  display:none;
+  color:#f3f9ff;
+  margin-top:10px;
+}
+footer{
+  background:#1C2541;
+  text-align:center;
+  padding:25px;
+  color:#AAB4C3;
+  margin-top:40px;
+}
+
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Event Planner PM</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#workflow">Event Steps</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-right">
+    <button id="loginBtn">Login</button>
+    <button id="registerBtn">Register</button>
+    <button id="full" onclick="startTour()">Fullscreen</button>
+    <button id="printBtn">Print</button>
+  </div>
+</nav>
+<section class="hero">
+  <h1>Event Project Management System</h1>
+  <p>Plan, manage and execute events efficiently in one platform.</p>
+  <br><br>
+  <button id="getStartedBtn">Get Started</button>
+</section>
+<section id="about" class="about">
+  <h2>About Our Website</h2>
+  <p>
+    This website helps event planners manage events like projects.
+    From planning and task tracking to execution and review, everything
+    is organized in a single system.
+  </p>
+</section>
+<section id="features">
+  <h2>Website Features</h2>
+  <div class="features">
+    <div class="feature-card">
+      <h3>Event Dashboard</h3>
+      <p>Manage multiple events from one place.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Task Management</h3>
+      <p>Create tasks and track progress easily.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Budget Tracking</h3>
+      <p>Monitor expenses and control costs.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Vendor Management</h3>
+      <p>Organize vendors and resources efficiently.</p>
+    </div>
+  </div>
+</section>
+<section id="workflow">
+  <h2>Event Management Steps</h2>
+  <div class="steps">
+    <div class="step"><b>1 Planning</b><br>Define goals, budget & timeline.</div>
+    <div class="step"><b>2 Task Setup</b><br>Create and assign tasks.</div>
+    <div class="step"><b>3 Resource Setup</b><br>Add vendors & venue.</div>
+    <div class="step"><b>4 Execution</b><br>Monitor event progress.</div>
+    <div class="step"><b>5 Review</b><br>Close and analyze results.</div>
+  </div>
+</section>
+<section id="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    What is this platform used for?
+    <div class="answer">
+      It helps event planners manage events using project management workflow.
+    </div>
+  </div>
+  <div class="faq-item">
+    Can I manage multiple events?
+    <div class="answer">
+      Yes, you can track multiple events at the same time.
+    </div>
+  </div>
+  <div class="faq-item">
+    Is technical knowledge required?
+    <div class="answer">
+      No. The system is designed to be simple and easy.
+    </div>
+  </div>
+</section>
+<footer>
+  © 2026 Event Planner Project Management System | All Rights Reserved
+</footer>
+<script>
+const loginBtn = document.getElementById("loginBtn");
+const registerBtn = document.getElementById("registerBtn");
+const nav=document.querySelector("nav");
+loginBtn.addEventListener("click",()=>{
+  alert("Go to Login Page");
+  window.open("login.html","_self");
+});
+registerBtn.addEventListener("click",()=>{
+  alert("Go to Register Page");
+  window.open("register.html","_self");
+});
+document.querySelectorAll(".feature-card").forEach(card=>{
+  card.addEventListener("mouseenter",()=>{
+    card.style.transform="scale(1.05)";
+  });
+  card.addEventListener("mouseleave",()=>{
+    card.style.transform="scale(1)";
+  });
+});
+document.querySelectorAll(".faq-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    const ans=item.querySelector(".answer");
+    ans.style.display = ans.style.display==="block" ? "none":"block";
+  });
+});
+document.addEventListener("keydown",(e)=>{
+  if(e.key==="l"){
+    window.open("login.html","_self");
+  }
+});
+document.removeEventListener("keydown",(e)=>{
+  if(e.key==="l"){
+    window.open("login.html","_self");
+  }
+});
+window.addEventListener("scroll",()=>{
+  if(window.scrollY>50){
+    nav.style.background="rgba(22, 22, 68,0.9)";
+  }else{
+    nav.style.background="linear-gradient(to right,rgba(52, 52, 129,0.9),rgba(22, 22, 68,0.9))";
+  }
+});
+const printBtn=document.getElementById("printBtn");
+printBtn.addEventListener("click",()=>{
+  window.print();
+});
+document.addEventListener("copy", (e) => {
+  e.clipboardData.setData("text/plain", "This content is protected from copying.  Please visit our website for more information.");
+  e.preventDefault();
+});
+window.addEventListener("online", () => {
+  alert("You are back online!");
+  console.log("Internet connected");
+});
+window.addEventListener("offline", () => {
+  alert("You are now offline. Some features may not work.");
+  console.log("Internet disconnected");
+});
+document.addEventListener("touchstart", () => {
+  alert("Touch interaction detected!");
+  console.log("Touch started");
+});
+document.addEventListener("touchend", () => {
+  alert("Touch interaction ended!");
+  console.log("Touch ended");
+});
+const btn=document.getElementById("full");
+function startTour() {
+   if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      btn.textContent="Exit Fullscreen";
+   } else {
+      if (document.exitFullscreen) {
+         document.exitFullscreen();
+         btn.textContent="Fullscreen";
+      }
+   }
+}
+const eventbtn=document.getElementById("getStartedBtn");
+eventbtn.addEventListener("click",()=>{
+  confirm("Let's get started with event planning!");
+  window.open("eventcreationform1.html","_self");
+});
+</script>
+</body>
+</html>

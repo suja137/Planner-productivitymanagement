@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Planner</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* BODY */
+body {
+  background: #0B132B;
+  color: #F5F7FA;
+  scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+nav {
+  position: sticky;
+  top: 0;
+  background: #1C2541;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h2 {
+  color: #FF7A00;
+}
+
+nav span {
+  color: #AAB4C3;
+}
+
+/* HERO SECTION */
+.hero {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #F5F7FA;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 46px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #AAB4C3;
+  margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.buttons button {
+  margin: 10px;
+  padding: 12px 22px;
+  background: #FF7A00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.buttons button:hover {
+  background: #FFA94D;
+  transform: scale(1.08);
+}
+
+/* GENERAL SECTION */
+section {
+  padding: 70px 30px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+/* FEATURES */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  width: 240px;
+  background: #1C2541;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.card p {
+  color: #AAB4C3;
+  margin-top: 10px;
+}
+
+/* STEPS */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.step {
+  background: #1C2541;
+  width: 200px;
+  padding: 15px;
+  border-left: 4px solid #FF7A00;
+}
+
+/* FAQ */
+.faq-item {
+  background: #1C2541;
+  margin: 10px auto;
+  max-width: 600px;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.answer {
+  display: none;
+  margin-top: 10px;
+  color: #AAB4C3;
+}
+
+/* FOOTER */
+footer {
+  background: #1C2541;
+  text-align: center;
+  padding: 25px;
+  color: #AAB4C3;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <h2>Event Planner</h2>
+  <span id="scrollStatus">Welcome 👋</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Plan Events Like a Pro 🎉</h1>
+  <p>Organize and manage events in one place.</p>
+
+  <div class="buttons">
+    <button id="loginBtn">Login</button>
+    <button id="registerBtn">Register</button>
+    <button id="createBtn">Create Event</button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <h2>About This Website</h2>
+  <p style="color:#AAB4C3">
+    This website helps you create, organize and manage events efficiently.
+  </p>
+</section>
+
+<!-- FEATURES -->
+<section>
+  <h2>Features</h2>
+
+  <div class="features">
+    <div class="card">
+      <h3>Event Creation</h3>
+      <p>Create and manage events easily.</p>
+    </div>
+
+    <div class="card">
+      <h3>Task Tracking</h3>
+      <p>Track event tasks and progress.</p>
+    </div>
+
+    <div class="card">
+      <h3>Budget Management</h3>
+      <p>Control expenses and planning cost.</p>
+    </div>
+
+    <div class="card">
+      <h3>Vendor Management</h3>
+      <p>Organize vendors and resources.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section>
+  <h2>Event Planning Steps</h2>
+
+  <div class="steps">
+    <div class="step">1️⃣ Create Event</div>
+    <div class="step">2️⃣ Add Tasks</div>
+    <div class="step">3️⃣ Assign Vendors</div>
+    <div class="step">4️⃣ Track Progress</div>
+    <div class="step">5️⃣ Execute Event</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    What can I do here?
+    <div class="answer">You can plan and manage events easily.</div>
+  </div>
+
+  <div class="faq-item">
+    Is login required?
+    <div class="answer">Yes, login is required for managing events.</div>
+  </div>
+
+  <div class="faq-item">
+    Can I create multiple events?
+    <div class="answer">Yes, multiple events are supported.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Event Planner System | All Rights Reserved
+</footer>
+
+<script>
+
+/* BUTTON EVENTS */
+document.getElementById("loginBtn").onclick = () => alert("Login Page");
+document.getElementById("registerBtn").onclick = () => alert("Register Page");
+document.getElementById("createBtn").onclick = () => alert("Create Event");
+
+/* CARD MOUSE EVENTS */
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mouseenter", () => {
+    card.style.transform = "scale(1.05)";
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "scale(1)";
+  });
+});
+
+/* FAQ CLICK EVENT */
+document.querySelectorAll(".faq-item").forEach(item => {
+  item.addEventListener("click", () => {
+    const ans = item.querySelector(".answer");
+    ans.style.display =
+      ans.style.display === "block" ? "none" : "block";
+  });
+});
+
+/* KEYBOARD EVENT */
+document.addEventListener("keydown", e => {
+  if (e.key === "l") {
+    alert("Shortcut: Login");
+  }
+});
+
+/* SCROLL EVENT */
+window.addEventListener("scroll", () => {
+  document.getElementById("scrollStatus").innerText =
+    "Scroll: " + window.scrollY;
+});
+
+</script>
+
+</body>
+</html>
